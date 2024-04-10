@@ -78,14 +78,14 @@ public class User {
      */
     public static String verifyPasswordFormat(String password){
 
-        boolean flag1,flag2;
+        boolean flag1,flag2,flag3;
 
         do {
-            flag1=false;flag2=false;
+            flag1=false;flag2=false;flag3=false;
             //Verify is 8 char length
             if (password.length()<8){
                 System.out.println(">>> Password needs to be 8 digits length...");
-            }
+            }else flag3=true;
             //Verify has one alphabetic char
             for (int i = 0; i < password.length(); i++) {
                 if ((password.charAt(i) > 64 && password.charAt(i) < 91) || (password.charAt(i) > 96 && password.charAt(i) < 123)) {
@@ -107,12 +107,12 @@ public class User {
                 System.out.println(">>> Password needs at least one number...");
             }
             //Retry password if its invalid
-            if(password.length()<8||!flag1||!flag2){
+            if(!flag1||!flag2||!flag3){
                 System.out.print("Password: ");
                 password = ConsoleReader.q.nextLine();
             }
 
-        }while (password.length()<8||!flag1||!flag2);
+        }while (!flag1||!flag2||!flag3);
         password = hashString(password);
         return password;
     }

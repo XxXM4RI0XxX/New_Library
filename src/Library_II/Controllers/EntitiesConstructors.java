@@ -100,9 +100,7 @@ public class EntitiesConstructors {
         System.out.print("Username: ");
         String username = ConsoleReader.q.nextLine();
         username = UserNameRepository.checkDuplicateUserName(username); //Verificar usuario repetido
-        System.out.print("Password: ");
-        String password = ConsoleReader.q.nextLine();
-        password = User.verifyPasswordFormat(password);//Verificar que la contraseña tenga formato requerido
+        String password = User.verifyPasswordFormat("");//Verificar que la contraseña tenga formato requerido
         //Creating client profile
         Profile profile = new Profile(name.trim(), lastname.trim(), new Date(year, month, day));
         Client client = new Client(profile,username,password);
@@ -137,9 +135,7 @@ public class EntitiesConstructors {
             System.out.print("Username: ");
             String username = ConsoleReader.q.nextLine();
             username = UserNameRepository.checkDuplicateUserName(username); //Verificar usuario repetido
-            System.out.print("Password: ");
-            String password = ConsoleReader.q.nextLine();
-            password = User.verifyPasswordFormat(password);//Verificar que la contraseña tenga formato requerido
+            String password = User.verifyPasswordFormat("");//Verificar que la contraseña tenga formato requerido
             //Creating admin profile
             Profile profile = new Profile(name.trim(), lastname.trim(), new Date(year, month, day));
             Administrator admin = new Administrator(profile,username,password,false);
