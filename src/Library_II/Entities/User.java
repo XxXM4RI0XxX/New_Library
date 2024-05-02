@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 
-public class User {
+public abstract class User {
 
     protected Profile profile;
     protected String username;

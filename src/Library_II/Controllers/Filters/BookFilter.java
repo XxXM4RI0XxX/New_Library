@@ -2,9 +2,7 @@ package Library_II.Controllers.Filters;
 
 import Library_II.ConsoleReader;
 import Library_II.Entities.Book;
-import Library_II.Entities.Client;
 import Library_II.Repositories.BookRepository;
-import Library_II.Repositories.ClientRepository;
 
 import static Library_II.Repositories.BookRepository.books;
 

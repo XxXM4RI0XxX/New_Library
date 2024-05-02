@@ -79,7 +79,7 @@ public class OptionMenu {
             switch (opt) {
                 case 1:
                     if (administrator.getAdminLevel()>=1) {
-                        ClientRepository.printClients();
+                        ClientRepositoryOptions.printClients();
                         System.out.println();
                     } else System.out.println(">>> Access deny... haha");
                     break;
@@ -91,9 +91,9 @@ public class OptionMenu {
                 case 3:
                     if (administrator.getAdminLevel()>=2) {
                         System.out.println("Choose the client you want to modify...");
-                        ClientRepository.selectClient();
+                        ClientRepositoryOptions.selectClient();
                         int cliID = ConsoleReader.q.nextInt();
-                        if (cliID > 0 && cliID <= ClientRepository.clients.size()) {
+                        if (cliID > 0 && cliID <= ClientRepositoryOptions.clients.size()) {
                             EntitiesModifier.modifyClients(cliID);
                         } else {
                             System.out.println("Invalid input...");
@@ -103,11 +103,11 @@ public class OptionMenu {
                 case 4:
                     if (administrator.getAdminLevel()==3) {
                         System.out.println("Choose the client you want to delete...");
-                        ClientRepository.printClients();
+                        ClientRepositoryOptions.printClients();
                         System.out.println("0) Cancel");
                         int CliID = ConsoleReader.q.nextInt();
-                        if (CliID > 0 && CliID <= ClientRepository.clients.size()) {
-                            ClientRepository.deleteClients(CliID - 1);
+                        if (CliID > 0 && CliID <= ClientRepositoryOptions.clients.size()) {
+                            ClientRepositoryOptions.deleteClients(CliID - 1);
                         } else {
                             System.out.println("Invalid input...");
                         }
@@ -191,7 +191,7 @@ public class OptionMenu {
 
             switch (opt) {
                 case 1:
-                    AdminRepository.printAdmins();
+                    AdminRepositoryOptions.printAdmins();
                     System.out.println();
                     break;
                 case 2:
@@ -199,9 +199,9 @@ public class OptionMenu {
                     break;
                 case 3:
                     System.out.println("Choose the admin you want to modify...");
-                    AdminRepository.selectAdmin();
+                    AdminRepositoryOptions.selectAdmin();
                     int adminID=ConsoleReader.q.nextInt();
-                    if(adminID>0 && adminID<=AdminRepository.admins.size()){
+                    if(adminID>0 && adminID<= AdminRepositoryOptions.admins.size()){
                         EntitiesModifier.modifyAdmins(adminID);}
                     else {
                         System.out.println("Invalid input...");
@@ -209,11 +209,11 @@ public class OptionMenu {
                     break;
                 case 4:
                     System.out.println("Choose the admin you want to delete...");
-                    AdminRepository.printAdmins();
+                    AdminRepositoryOptions.printAdmins();
                     System.out.println("0) Cancel");
                     int AdminID=ConsoleReader.q.nextInt();
-                    if(AdminID>0 && AdminID<=AdminRepository.admins.size()){
-                        AdminRepository.deleteAdmins(AdminID-1);}
+                    if(AdminID>0 && AdminID<= AdminRepositoryOptions.admins.size()){
+                        AdminRepositoryOptions.deleteAdmins(AdminID-1);}
                     else {
                         System.out.println("Invalid input...");
                     }

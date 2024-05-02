@@ -4,7 +4,7 @@ import Library_II.Entities.Client;
 
 import java.util.ArrayList;
 
-public class ClientRepository {
+public class ClientRepositoryOptions {
 
     public static ArrayList<Client> clients = new ArrayList<>();
 
@@ -60,17 +60,17 @@ public class ClientRepository {
     }
 
     public static void selectClient(){
-        ClientRepository.printClients();
+        ClientRepositoryOptions.printClients();
         System.out.println("If your client isn't in the list, you can cancel with (0)");
     }
 
     public static void selectReturnClient(){
-        ClientRepository.printReturnClients();
+        ClientRepositoryOptions.printReturnClients();
         System.out.println("If there's no clients with borrowed books, cancel with (0)");
     }
 
     public static void deleteClients(int CliID){
-        Client delClient = ClientRepository.getClient(CliID);
+        Client delClient = ClientRepositoryOptions.getClient(CliID);
         if(delClient.getBorrowedBooks().isEmpty())
             clients.remove(CliID);
         else{

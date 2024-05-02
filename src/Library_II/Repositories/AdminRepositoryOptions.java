@@ -4,7 +4,7 @@ import Library_II.Entities.Administrator;
 
 import java.util.ArrayList;
 
-public class AdminRepository {
+public class AdminRepositoryOptions {
 
     public static ArrayList<Administrator> admins = new ArrayList<>();
     public static void addAdministrator(Administrator administrator){admins.add(administrator);}
@@ -40,14 +40,14 @@ public class AdminRepository {
     }
 
     public static void selectAdmin(){
-        AdminRepository.printAdmins();
+        AdminRepositoryOptions.printAdmins();
         System.out.println("If your administrator isn't in the list, you can cancel with (0)");
     }
 
     public static void deleteAdmins(int adminID){
-        Administrator delAdmin = AdminRepository.getAdmin(adminID);
+        Administrator delAdmin = AdminRepositoryOptions.getAdmin(adminID);
         System.out.printf("Administrator %s %s successfully deleted :(",delAdmin.getProfile().getName(),delAdmin.getProfile().getLastName());
-        AdminRepository.admins.remove(delAdmin);
+        AdminRepositoryOptions.admins.remove(delAdmin);
     }
 
 }

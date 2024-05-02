@@ -21,14 +21,14 @@ public class Login {
                 System.out.println("<Left username blank to exit library system>");
                 System.out.print("Username: ");
                 username = ConsoleReader.q.nextLine();
-                for (Administrator administrator : AdminRepository.admins) {
+                for (Administrator administrator : AdminRepositoryOptions.admins) {
                     if (administrator.getUsername().equals(username)) {
                         loginUsername = administrator.getUsername();
                         type = 1;
                         admin = administrator;
                     }
                 }
-                for (Client client : ClientRepository.clients) {
+                for (Client client : ClientRepositoryOptions.clients) {
                     if (client.getUsername().equals(username)) {
                         loginUsername = client.getUsername();
                         type = 2;

@@ -89,7 +89,7 @@ public class EntitiesModifier {
     }
 
     public static void modifyClients(int cliID){
-        Client modCli = ClientRepository.getClient(cliID-1);ConsoleReader.q.nextLine();
+        Client modCli = ClientRepositoryOptions.getClient(cliID-1);ConsoleReader.q.nextLine();
 
         System.out.printf(">>> Client %s \n",modCli.getProfile().getName());
         System.out.println("a) Change client data\nb) Change username\nc) Change password\nx) Cancel");
@@ -141,7 +141,7 @@ public class EntitiesModifier {
     }
 
     public static void modifyAdmins(int adminID) {
-        Administrator modAdmin = AdminRepository.getAdmin(adminID - 1);
+        Administrator modAdmin = AdminRepositoryOptions.getAdmin(adminID - 1);
         System.out.printf("Admin chosen: %s %s\n",modAdmin.getProfile().getName(),modAdmin.getProfile().getLastName());
         System.out.println("1) Admin info\n2) Admin permissions");
         byte opt = ConsoleReader.q.nextByte();ConsoleReader.q.nextLine();

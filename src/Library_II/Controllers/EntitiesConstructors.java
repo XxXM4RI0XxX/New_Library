@@ -105,7 +105,7 @@ public class EntitiesConstructors {
         Profile profile = new Profile(name.trim(), lastname.trim(), new Date(year, month, day));
         Client client = new Client(profile,username,password);
         //Add new client to Data_Repository
-        ClientRepository.addClient(client);
+        ClientRepositoryOptions.addClient(client);
         System.out.println("\n>>> Client successfully added :D");
         }
     }
@@ -149,7 +149,7 @@ public class EntitiesConstructors {
             }
             admin.setAdminLevel();
             //Add new admin to Data_Repository
-            AdminRepository.addAdministrator(admin);
+            AdminRepositoryOptions.addAdministrator(admin);
             UserNameRepository.addUserName(username);
             System.out.println(">>> Administrator successfully added :D");
         }
@@ -166,15 +166,15 @@ public class EntitiesConstructors {
 
         System.out.println("Who's " + transactionType.toLowerCase() + "ing the book?");
         if(transType==1)
-            ClientRepository.selectClient();
+            ClientRepositoryOptions.selectClient();
         else{
-        ClientRepository.selectReturnClient();}
+        ClientRepositoryOptions.selectReturnClient();}
 
         int selClient = ConsoleReader.q.nextInt(),selBook;
 
         //If wanted to cancel
-        if (selClient > 0 && selClient <= ClientRepository.clients.size()) {
-            Client client = ClientRepository.getClient(selClient - 1);
+        if (selClient > 0 && selClient <= ClientRepositoryOptions.clients.size()) {
+            Client client = ClientRepositoryOptions.getClient(selClient - 1);
 
                 switch (transType) {
                     case 1:
@@ -211,7 +211,7 @@ public class EntitiesConstructors {
                         break;
                     case 2:
                         System.out.println("Choose the book to " + transactionType.toLowerCase());
-                        ClientRepository.selectClientBook(client);
+                        ClientRepositoryOptions.selectClientBook(client);
                         selBook = ConsoleReader.q.nextInt();
 
                         //If there's no book to return

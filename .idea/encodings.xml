@@ -19,10 +19,10 @@
     <file url="file://$PROJECT_DIR$/src/Library_II/Entities/Profile.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/Library_II/Entities/Transaction.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/Library_II/Entities/User.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/Library_II/Repositories/AdminRepository.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/Library_II/Repositories/AdminRepositoryOptions.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/Library_II/Repositories/AuthorRepository.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/Library_II/Repositories/BookRepository.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/Library_II/Repositories/ClientRepository.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/Library_II/Repositories/ClientRepositoryOptions.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/Library_II/Repositories/TransactionRepository.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/Library_II/Seeder.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/Library_II/Test_class.java" charset="windows-1252" />
