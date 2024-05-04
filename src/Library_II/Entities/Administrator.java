@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Administrator extends User{
 
     private ArrayList<Permissions> permissions = new ArrayList<>();
-    private byte adminLevel;
+    private static byte adminLevel;
     final private boolean isSuperAdmin;
 
     public Administrator(Profile profile, String username, String password, boolean isSuperAdmin) {
@@ -33,7 +33,7 @@ public class Administrator extends User{
         else return "None...";
     }
 
-    public byte getAdminLevel() {
+    public static byte getAdminLevel() {
         return adminLevel;
     }
     ////////////////////////////////////////////////////////////
