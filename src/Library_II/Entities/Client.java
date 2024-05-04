@@ -10,6 +10,8 @@ public class Client extends User{
         super(profile, username, password);
     }
 
+
+
     public ArrayList<Book> getBorrowedBooks() {
         return borrowedBooks;
     }
@@ -50,6 +52,5 @@ public class Client extends User{
     public void returnBook(Book borrowedBook){
         borrowedBooks.remove(borrowedBook);
     }
-
 
 }

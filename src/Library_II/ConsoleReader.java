@@ -13,8 +13,8 @@ public class ConsoleReader{
 
         do {
             try {
-                System.out.print("-> ");
                 number = q.nextByte();
+                q.nextLine();
                 return number;
             } catch (InputMismatchException e) {
                 System.out.println("Please enter a valid number...");
@@ -32,7 +32,6 @@ public class ConsoleReader{
 
         do {
             try {
-                System.out.print("-> ");
                 float x = q.nextFloat();
                 number = (int) x;
                 return number;
@@ -51,7 +50,6 @@ public class ConsoleReader{
 
         do {
             try {
-                System.out.print("-> ");
                 float x = q.nextFloat();
                 number = (long) x;
                 return number;
@@ -70,7 +68,6 @@ public class ConsoleReader{
 
         do{
             try {
-                System.out.print("-> ");
                 number = q.nextFloat();
                 return number;
             } catch (InputMismatchException e){
@@ -88,7 +85,6 @@ public class ConsoleReader{
 
         do{
             try {
-                System.out.print("-> ");
                 number = q.nextDouble();
                 return number;
             } catch (InputMismatchException e){
@@ -105,7 +101,6 @@ public class ConsoleReader{
         boolean flag = true;
 
         do {
-            System.out.print("-> ");
             String value = q.nextLine();
             if(value.length()>1){
                 System.out.println("Enter a valid character...");
@@ -118,11 +113,10 @@ public class ConsoleReader{
     }
 
     public static String readString(int maxLength){ //maxLength = 0 for any length
-        String line = "";
+        String line;
 
         if(maxLength>0){
             do{
-                System.out.print("-> ");
                 line = q.nextLine();
                 if(line.length()>maxLength)
                     System.out.println(">>> Invalid length...");
@@ -130,7 +124,6 @@ public class ConsoleReader{
             }while (line.length()>maxLength);
         }
         else{
-            System.out.print("-> ");
             line = q.nextLine();
             return line;
         }

@@ -12,47 +12,28 @@ public class Login {
         do {
             System.out.println("\n\t\t >>>LOGIN<<<");
             String loginUsername = null;
-            int type = 0;
             String username;
-            Administrator admin = null;
-            Client cliente = null;
             User user = null;
-
-
 
             //VERIFY USERNAME
             do {
                 System.out.println("<Left username blank to exit library system>");
                 System.out.print("Username: ");
-                username = ConsoleReader.q.nextLine();
+                username = ConsoleReader.readString(0);
 
                 for(User getUser : UserRepository.getUsers()){
-                    if(getUser.getUsername().equals(username));
-                    user = getUser;
+                    if(getUser.getUsername().equals(username)) {
+                        loginUsername = getUser.getUsername();
+                        user = getUser;
+                    }
                 }
 
-                for (Administrator administrator : AdminRepositoryOptions.admins) {
-                    if (administrator.getUsername().equals(username)) {
-                        loginUsername = administrator.getUsername();
-                        type = 1;
-                        admin = administrator;
-                    }
-                }
-                for (Client client : ClientRepositoryOptions.clients) {
-                    if (client.getUsername().equals(username)) {
-                        loginUsername = client.getUsername();
-                        type = 2;
-                        cliente = client;
-                    }
-                }
                 if (loginUsername == null && !username.isEmpty()) {
                     System.out.println("Username not found...");
                 }
             } while (loginUsername == null && !username.isEmpty());
 
             if (!username.isEmpty()) {
-
-               //ADMINS
                     //VERIFY PASSWORD
                     boolean flag = true;
                     do {
@@ -60,8 +41,7 @@ public class Login {
                         System.out.print("Password: ");
                         String inputPassword = ConsoleReader.readString(0);
                         //Check password is the same
-                        String userPassword = admin.getPassword();// User password
-                        boolean checkPassword = User.checkPassword(inputPassword,userPassword);
+                        boolean checkPassword = User.checkPassword(inputPassword,user.getPassword());
                         if (checkPassword) {
                             flag = false;
                             if(user instanceof Client)
@@ -76,31 +56,10 @@ public class Login {
                         }
                     } while (flag);
 
-
-                if (type == 2) {//CLIENTS
-                    //VERIFY PASSWORD
-                    boolean flag = true;
-                    do {
-                        System.out.println("<Left password blank to cancel>");
-                        System.out.print("Password: ");
-                        String inputPassword = ConsoleReader.q.nextLine();
-                        //Check password is the same
-                        String userPassword = cliente.getPassword();// User password
-                        boolean checkPassword = User.checkPassword(inputPassword,userPassword);
-                        if (checkPassword) {
-                            MainController.mainClientMenu(cliente);
-                            flag = false;
-                        } else if (inputPassword.isEmpty()) {
-                            System.out.println(">>> Login canceled");
-                            flag = false;
-                        } else {
-                            System.out.println("Invalid password, try again...");
-                        }
-                    } while (flag);
-                }
             } else {
                 outFlag=false;
             }
+
         }while(outFlag);
     }
 }

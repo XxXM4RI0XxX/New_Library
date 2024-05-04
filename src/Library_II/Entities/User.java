@@ -10,11 +10,16 @@ public abstract class User {
     protected Profile profile;
     protected String username;
     protected String password;
+    private byte AdminLevel;
 
     public User(Profile profile,String username, String password){
         this.profile=profile;
         this.username=username;
         this.password=password;
+    }
+
+    public byte getAdminLevel(){
+        return AdminLevel;
     }
 
     public void printProfile(int ID){
@@ -70,6 +75,7 @@ public abstract class User {
         }
     }
 
+    ///////////////////Verificar contraseña///////////////////////////////////
     /*
     La contraseña debe:
     - Al menos contener 8 digitos

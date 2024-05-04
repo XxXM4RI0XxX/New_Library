@@ -4,6 +4,7 @@ import Library_II.ConsoleReader;
 import Library_II.Controllers.Filters.BookFilter;
 import Library_II.Controllers.Filters.TransactionClientFilter;
 import Library_II.Entities.*;
+import Library_II.Repositories.UserRepository;
 
 
 public class MainController {
@@ -17,14 +18,12 @@ public class MainController {
             System.out.println("\n\t  <<<CLIENT MENU>>>");
             System.out.println("-------------------------------");
             System.out.println("1) See Books\n2) See my transactions\n0) Logout");
-            char opt = ConsoleReader.q.next().charAt(0);
-            // SE PODRIAN USAR CHAR PARA FRENAR QUE EXISTAN FALLAS AL INGRESAR UNA LETRA O CADENA ENVES DE UN NUMERO ENTERO, PERO TIENE LA LIMITACION DE YA NO PODER
-            // TENER UN MENU DE MAS DE 11 OPCIONES SI SE USAN NUMEROS ENTEROS, SE PUEDE, PERO SERIA MAS TRABAJO INNECESARIO, MEJOR ATENERSE A LOS TRYCATCH
+            char opt = ConsoleReader.readChar();
             switch (opt) {
                 case '1':
                     System.out.println("-------------------------------");
                     System.out.println("1) My books\n2) Library books");
-                    byte optA=ConsoleReader.q.nextByte();
+                    byte optA=ConsoleReader.readByte();
                     switch (optA){
                         case 1 -> client.printBorrowedBooks();
                         case 2 -> BookFilter.seeBooks();
@@ -36,7 +35,7 @@ public class MainController {
                     break;
                 case '0':
                     flag = false;
-                    System.out.println("May the force be with you "+client.getProfile().getName()+" :)");
+                    System.out.println("May the force be with you "+user.getProfile().getName()+" :)");
                     break;
                 default:
                     System.out.println("Invalid option :o");
@@ -47,10 +46,11 @@ public class MainController {
     }
 
     public static void mainAdminMenu(User user) {
+        Administrator admin = (Administrator) user;
         System.out.println("\n>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-        System.out.println("Welcome " + user.getProfile().getName() +" "+ user.getProfile().getLastName()+" :D");
-        System.out.print("Administrator level: " + user.);
-        switch ((user)){
+        System.out.println("Welcome " + admin.getProfile().getName() +" "+ admin.getProfile().getLastName()+" :D");
+        System.out.print("Administrator level: " + admin.getAdminLevel());
+        switch (admin.getAdminLevel()){
             case 1 -> System.out.println("| READ |");
             case 2 -> System.out.println("| READ ; WRITE |");
             case 3 -> System.out.println("| READ ; WRITE ; DELETE |");
@@ -81,22 +81,22 @@ public class MainController {
                     OperationControllers.seeTransactions();
                     break;
                 case '1':
-                    OptionMenu.adminBookMenu(administrator);
+                    OptionMenu.adminBookMenu(admin);
                     break;
                 case '2':
-                    OptionMenu.adminClientMenu(administrator);
+                    OptionMenu.adminClientMenu(admin);
                     break;
                 case '3':
-                    OptionMenu.adminAuthorMenu(administrator);
+                    OptionMenu.adminAuthorMenu(admin);
                     break;
                 case 'x':
-                    if(administrator.isSuperAdmin())
+                    if(admin.isSuperAdmin())
                         OptionMenu.superAdminMenu();
                     else System.out.println(">>> Only Super Admin can access !");
                     break;
                 case '0':
                     flag = false;
-                    System.out.println("May the force be with you "+administrator.getProfile().getName()+" :)");
+                    System.out.println("May the force be with you "+admin.getProfile().getName()+" :)");
                     break;
                 default:
                     System.out.println("Invalid option :o");

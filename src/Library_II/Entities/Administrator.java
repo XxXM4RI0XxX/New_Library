@@ -50,4 +50,9 @@ public class Administrator extends User{
             adminLevel=1;
         else adminLevel=0;
     }
+
+    @Override
+    public void print() {
+        System.out.print("avr'nt");
+    }
 }
