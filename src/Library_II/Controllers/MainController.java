@@ -3,12 +3,12 @@ package Library_II.Controllers;
 import Library_II.ConsoleReader;
 import Library_II.Controllers.Filters.BookFilter;
 import Library_II.Controllers.Filters.TransactionClientFilter;
-import Library_II.Entities.Administrator;
-import Library_II.Entities.Client;
+import Library_II.Entities.*;
+
 
 public class MainController {
 
-    public static void mainClientMenu(Client client){
+    public static void mainClientMenu(User user){
 
         System.out.println("\nWelcome " + client.getProfile().getName() +" "+client.getProfile().getLastName() +" :D");
 
@@ -46,11 +46,11 @@ public class MainController {
         ConsoleReader.q.nextLine();
     }
 
-    public static void mainAdminMenu(Administrator administrator) {
+    public static void mainAdminMenu(User user) {
         System.out.println("\n>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-        System.out.println("Welcome " + administrator.getProfile().getName() +" "+ administrator.getProfile().getLastName()+" :D");
-        System.out.print("Administrator level: "+administrator.getAdminLevel());
-        switch (administrator.getAdminLevel()){
+        System.out.println("Welcome " + user.getProfile().getName() +" "+ user.getProfile().getLastName()+" :D");
+        System.out.print("Administrator level: " + user.);
+        switch ((user)){
             case 1 -> System.out.println("| READ |");
             case 2 -> System.out.println("| READ ; WRITE |");
             case 3 -> System.out.println("| READ ; WRITE ; DELETE |");

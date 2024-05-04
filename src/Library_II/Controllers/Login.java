@@ -8,6 +8,7 @@ public class Login {
 
     public static void loginScreen() {
         boolean outFlag=true;
+
         do {
             System.out.println("\n\t\t >>>LOGIN<<<");
             String loginUsername = null;
@@ -15,12 +16,21 @@ public class Login {
             String username;
             Administrator admin = null;
             Client cliente = null;
+            User user = null;
+
+
 
             //VERIFY USERNAME
             do {
                 System.out.println("<Left username blank to exit library system>");
                 System.out.print("Username: ");
                 username = ConsoleReader.q.nextLine();
+
+                for(User getUser : UserRepository.getUsers()){
+                    if(getUser.getUsername().equals(username));
+                    user = getUser;
+                }
+
                 for (Administrator administrator : AdminRepositoryOptions.admins) {
                     if (administrator.getUsername().equals(username)) {
                         loginUsername = administrator.getUsername();
@@ -42,19 +52,21 @@ public class Login {
 
             if (!username.isEmpty()) {
 
-                if (type == 1) { //ADMINS
+               //ADMINS
                     //VERIFY PASSWORD
                     boolean flag = true;
                     do {
                         System.out.println("<Left password blank to cancel>");
                         System.out.print("Password: ");
-                        String inputPassword = ConsoleReader.q.nextLine();
+                        String inputPassword = ConsoleReader.readString(0);
                         //Check password is the same
                         String userPassword = admin.getPassword();// User password
                         boolean checkPassword = User.checkPassword(inputPassword,userPassword);
                         if (checkPassword) {
                             flag = false;
-                            MainController.mainAdminMenu(admin);
+                            if(user instanceof Client)
+                                MainController.mainClientMenu(user);
+                            else MainController.mainAdminMenu(user);
                         } else if (inputPassword.isEmpty()){
                             System.out.println(">>> Login canceled");
                             flag=false;
@@ -63,7 +75,7 @@ public class Login {
                             System.out.println("Invalid password, try again...");
                         }
                     } while (flag);
-                }
+
 
                 if (type == 2) {//CLIENTS
                     //VERIFY PASSWORD
