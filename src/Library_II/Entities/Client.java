@@ -6,10 +6,19 @@ public class Client extends User{
 
     private final ArrayList<Book> borrowedBooks=new ArrayList<>(); //Books the client has borrowed
 
-    public Client(Profile profile, String username, String password) {
+    public Client(Profile profile, String username, String password,int adminLevel) {
         super(profile, username, password);
     }
 
+    @Override
+    public void print() {
+
+    }
+
+    @Override
+    public byte getAdminLevel() {
+        return adminLevel;
+    }
 
 
     public ArrayList<Book> getBorrowedBooks() {

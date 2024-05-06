@@ -10,7 +10,7 @@ public abstract class User {
     protected Profile profile;
     protected String username;
     protected String password;
-    private byte AdminLevel;
+    protected byte adminLevel;
 
     public User(Profile profile,String username, String password){
         this.profile=profile;
@@ -18,9 +18,9 @@ public abstract class User {
         this.password=password;
     }
 
-    public byte getAdminLevel(){
-        return AdminLevel;
-    }
+    public abstract void print();
+
+    public abstract byte getAdminLevel();
 
     public void printProfile(int ID){
         String pattern = "dd/MM/yyyy";

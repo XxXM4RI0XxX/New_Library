@@ -44,9 +44,24 @@ public class Login {
                         boolean checkPassword = User.checkPassword(inputPassword,user.getPassword());
                         if (checkPassword) {
                             flag = false;
-                            if(user instanceof Client)
-                                MainController.mainClientMenu(user);
-                            else MainController.mainAdminMenu(user);
+                            Client client = null;
+                            Administrator administrator = null;
+                            if(user instanceof Client) {
+                                for (Client getClient : ClientRepositoryOptions.clients) { //Temporal
+                                    if (getClient.getUsername().equals(username)) {//
+                                        client = getClient;//
+                                    }//
+                                }
+                                MainController.mainClientMenu(client);
+                            }
+                            else {
+                                for (Administrator getAdmin : AdminRepositoryOptions.admins) { //Temporal
+                                    if (getAdmin.getUsername().equals(username)) {//
+                                        administrator = getAdmin;//
+                                    }//
+                                }
+                                MainController.mainAdminMenu(administrator);
+                            }
                         } else if (inputPassword.isEmpty()){
                             System.out.println(">>> Login canceled");
                             flag=false;

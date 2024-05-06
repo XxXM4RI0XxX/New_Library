@@ -1,4 +1,4 @@
-//Esta madre es una lista de valores los cuales una vez ejecutado el programa, ya no pueden ser cambiados
+package Randoms;//Esta madre es una lista de valores los cuales una vez ejecutado el programa, ya no pueden ser cambiados
 //Se comportan muy similarmente a los objetos
 
 //Un enum es una lista de valores que pueden contener atributos al especificarlos con un constructor, se accede a estos valores mediante:

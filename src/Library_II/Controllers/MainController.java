@@ -3,15 +3,17 @@ package Library_II.Controllers;
 import Library_II.ConsoleReader;
 import Library_II.Controllers.Filters.BookFilter;
 import Library_II.Controllers.Filters.TransactionClientFilter;
+import Library_II.Controllers.Menus.AdminMenu;
+import Library_II.Controllers.Menus.Menu;
 import Library_II.Entities.*;
 import Library_II.Repositories.UserRepository;
 
 
 public class MainController {
 
-    public static void mainClientMenu(User user){
+    public static void mainClientMenu(Client user){ //Temporal Client obj
 
-        System.out.println("\nWelcome " + client.getProfile().getName() +" "+client.getProfile().getLastName() +" :D");
+        System.out.println("\nWelcome " + user.getProfile().getName() +" "+user.getProfile().getLastName() +" :D");
 
         boolean flag = true;
         do {
@@ -25,13 +27,13 @@ public class MainController {
                     System.out.println("1) My books\n2) Library books");
                     byte optA=ConsoleReader.readByte();
                     switch (optA){
-                        case 1 -> client.printBorrowedBooks();
+                        case 1 -> user.printBorrowedBooks();
                         case 2 -> BookFilter.seeBooks();
                         default -> System.out.println("Invalid input...");
                     }
-                                        break;
+                    break;
                 case '2':
-                    TransactionClientFilter.seeClientTransactions(client);
+                    TransactionClientFilter.seeClientTransactions(user);
                     break;
                 case '0':
                     flag = false;
@@ -45,12 +47,11 @@ public class MainController {
         ConsoleReader.q.nextLine();
     }
 
-    public static void mainAdminMenu(User user) {
-        Administrator admin = (Administrator) user;
+    public static void mainAdminMenu(Administrator user) {
         System.out.println("\n>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-        System.out.println("Welcome " + admin.getProfile().getName() +" "+ admin.getProfile().getLastName()+" :D");
-        System.out.print("Administrator level: " + admin.getAdminLevel());
-        switch (admin.getAdminLevel()){
+        System.out.println("Welcome " + user.getProfile().getName() +" "+ user.getProfile().getLastName()+" :D");
+        System.out.print("Administrator level: " + user.getAdminLevel());
+        switch (user.getAdminLevel()){
             case 1 -> System.out.println("| READ |");
             case 2 -> System.out.println("| READ ; WRITE |");
             case 3 -> System.out.println("| READ ; WRITE ; DELETE |");
@@ -68,8 +69,12 @@ public class MainController {
             System.out.println("1) Admin books\n2) Admin clients\n3) Admin authors\n0) Logout");
             System.out.println("-------------------------------------");
             System.out.println("x) Admin administrators (only Super Admin)");
-            char opt = ConsoleReader.q.next().charAt(0);
+            System.out.print("-> ");
+//            Controller controller = Menu.getAdminMenu("a");
+//            controller.execute();
 
+            char opt = ConsoleReader.readChar();
+            
             switch (opt) {
                 case 'a':
                     OperationControllers.borrowBook();
@@ -81,22 +86,22 @@ public class MainController {
                     OperationControllers.seeTransactions();
                     break;
                 case '1':
-                    OptionMenu.adminBookMenu(admin);
+                    OptionMenu.adminBookMenu(user);
                     break;
                 case '2':
-                    OptionMenu.adminClientMenu(admin);
+                    OptionMenu.adminClientMenu(user);
                     break;
                 case '3':
-                    OptionMenu.adminAuthorMenu(admin);
+                    OptionMenu.adminAuthorMenu(user);
                     break;
                 case 'x':
-                    if(admin.isSuperAdmin())
+                    if(user.isSuperAdmin())
                         OptionMenu.superAdminMenu();
                     else System.out.println(">>> Only Super Admin can access !");
                     break;
                 case '0':
                     flag = false;
-                    System.out.println("May the force be with you "+admin.getProfile().getName()+" :)");
+                    System.out.println("May the force be with you "+user.getProfile().getName()+" :)");
                     break;
                 default:
                     System.out.println("Invalid option :o");

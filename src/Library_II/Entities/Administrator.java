@@ -33,9 +33,6 @@ public class Administrator extends User{
         else return "None...";
     }
 
-    public static byte getAdminLevel() {
-        return adminLevel;
-    }
     ////////////////////////////////////////////////////////////
     public void addPermission(Permissions Permission){
         permissions.add(Permission);
@@ -54,5 +51,10 @@ public class Administrator extends User{
     @Override
     public void print() {
         System.out.print("avr'nt");
+    }
+
+    @Override
+    public byte getAdminLevel() {
+        return adminLevel;
     }
 }

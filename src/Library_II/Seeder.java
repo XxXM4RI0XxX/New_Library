@@ -1,13 +1,18 @@
 package Library_II;
 
+import Library_II.Controllers.Controller;
+import Library_II.Controllers.Menus.AdminMenu;
+import Library_II.Controllers.Menus.Menu;
 import Library_II.Entities.*;
 import Library_II.Repositories.*;
 
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 public class Seeder { //Crea objetos para las clases
 
@@ -58,7 +63,7 @@ public class Seeder { //Crea objetos para las clases
         Admin4.setAdminLevel();
         UserNameRepository.addUserName("ADMIN3");
 
-
+        AdminRepositoryOptions.addAdministrator(superAdmin);
         UserRepository.addUser(superAdmin);
         UserRepository.addUser(Admin2);
         UserRepository.addUser(Admin3);
@@ -68,7 +73,7 @@ public class Seeder { //Crea objetos para las clases
     public static Client autoClient1(){
         String password = User.hashString("ClientOne1");
         Profile profile1 = new Profile("Jafet","Santoyo Algo",new Date(103,Calendar.FEBRUARY,4));
-        Client client1 = new Client(profile1,"JSA1",password);
+        Client client1 = new Client(profile1,"JSA1",password,0);
         ClientRepositoryOptions.addClient(client1);
         UserNameRepository.addUserName("JSA1");
 
@@ -78,8 +83,9 @@ public class Seeder { //Crea objetos para las clases
     public static Client autoClient2(){
         String password = User.hashString("ClientTwo2");
         Profile profile2 = new Profile("Andrea","Duran Martinez",new Date(103,Calendar.SEPTEMBER,2));
-        Client client2 = new Client(profile2,"ADM2",password);
+        Client client2 = new Client(profile2,"ADM2",password,0);
         UserRepository.addUser(client2);
+        ClientRepositoryOptions.addClient(client2);
         UserNameRepository.addUserName("ADM2");
 
         return client2;
@@ -88,7 +94,7 @@ public class Seeder { //Crea objetos para las clases
     public static Client autoClient3(){
         String password = User.hashString("ClientThree3");
         Profile profile3 = new Profile("Atiziri","Mancilla Cruz",new Date(103,Calendar.JUNE,5));
-        Client client3 = new Client(profile3,"AMC3",password);
+        Client client3 = new Client(profile3,"AMC3",password,0);
         UserRepository.addUser(client3);
         UserNameRepository.addUserName("AMC3");
 
@@ -176,10 +182,18 @@ public class Seeder { //Crea objetos para las clases
         Book modBook1 = saveBook.get(7);
         modBook1.modifyIsAvailable(false);
         client1.borrowBook(modBook1);
-        
+
         Book modBook2 = saveBook.get(8);
         modBook2.modifyIsAvailable(false);
         client2.borrowBook(modBook2);
+    }
+
+    public static void autoMenus(){
+
+        HashMap<Integer, MenuItem> items = new HashMap<>();
+        items.put(1, );
+        items.put(2, new MenuItem("Despedirse", () -> System.out.println("Adiós.")));
+
     }
 
 }

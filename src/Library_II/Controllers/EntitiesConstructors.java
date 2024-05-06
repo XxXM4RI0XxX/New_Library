@@ -103,7 +103,7 @@ public class EntitiesConstructors {
         String password = User.verifyPasswordFormat("");//Verificar que la contraseña tenga formato requerido
         //Creating client profile
         Profile profile = new Profile(name.trim(), lastname.trim(), new Date(year, month, day));
-        Client client = new Client(profile,username,password);
+        Client client = new Client(profile,username,password, 0);
         //Add new client to Data_Repository
         ClientRepositoryOptions.addClient(client);
         System.out.println("\n>>> Client successfully added :D");
