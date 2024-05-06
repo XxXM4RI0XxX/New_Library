@@ -11,8 +11,8 @@ import Library_II.Repositories.UserRepository;
 
 public class MainController {
 
-    public static void mainClientMenu(Client user){ //Temporal Client obj
-
+    public static void mainClientMenu(User users){ //Temporal Client obj
+        Client user = (Client) users;
         System.out.println("\nWelcome " + user.getProfile().getName() +" "+user.getProfile().getLastName() +" :D");
 
         boolean flag = true;
@@ -47,7 +47,8 @@ public class MainController {
         ConsoleReader.q.nextLine();
     }
 
-    public static void mainAdminMenu(Administrator user) {
+    public static void mainAdminMenu(User users) {
+        Administrator user = (Administrator) users;
         System.out.println("\n>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         System.out.println("Welcome " + user.getProfile().getName() +" "+ user.getProfile().getLastName()+" :D");
         System.out.print("Administrator level: " + user.getAdminLevel());
@@ -70,8 +71,8 @@ public class MainController {
             System.out.println("-------------------------------------");
             System.out.println("x) Admin administrators (only Super Admin)");
             System.out.print("-> ");
-//            Controller controller = Menu.getAdminMenu("a");
-//            controller.execute();
+            Controller controller = Menu.getAdminMenu("a");
+            controller.execute();
 
             char opt = ConsoleReader.readChar();
             

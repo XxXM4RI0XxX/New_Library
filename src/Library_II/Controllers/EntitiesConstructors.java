@@ -7,7 +7,7 @@ import Library_II.Repositories.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class EntitiesConstructors {
+public class EntitiesConstructors implements Controller {
 
     //////////////////////AUTHORS/////////////////////////////
     public static void authorConstructor() {
@@ -236,4 +236,10 @@ public class EntitiesConstructors {
             System.out.println("Invalid client...");
         }
     }
+
+    @Override
+    public void execute() {
+        transactionConstructor(0);
+    }
+
 }
