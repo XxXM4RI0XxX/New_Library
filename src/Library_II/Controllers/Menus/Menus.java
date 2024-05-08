@@ -166,10 +166,15 @@ public class Menus{
         /////////////////////OPTION MENUS/////////////////////
         /////BOOKFILTER////////
         HashMap<String,Controller> bookFilterMenu = new HashMap<>();
+
+        bookFilterMenu.put("menu", user -> {
+            System.out.println("\nWant to filter books?");
+            System.out.println("1) Show borrowed books\n2) Show available books\n0) Don't filter, show all");
+        });
+        //SHOW NO FILTER BOOKS
+        bookFilterMenu.put("0", user -> BookRepository.printBooks());
         //SHOW BORROWED BOOKS
-        bookFilterMenu.put("1", user -> BookRepository.printBooks());
-        //SHOW AVAILABLE BOOKS
-        bookFilterMenu.put("2", user -> {
+        bookFilterMenu.put("1", user -> {
             if(books.isEmpty())
                 System.out.println(">>>No books in inventory :(");
             else {
@@ -186,6 +191,26 @@ public class Menus{
                     }
                 }
                 System.out.println("`-------------------------------------------------------------------------------------------------------------------------------------------'");
+            }
+        });
+        //SHOW AVAILABLE BOOKS
+        bookFilterMenu.put("2", user -> {
+            if(books.isEmpty())
+                System.out.println(">>>No books in inventory :(");
+            else {
+                int ID = 1;
+                System.out.println("  ,._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-_-._");
+                System.out.println(",'_.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._-_.-`.");
+                System.out.printf("§ %2s|%25s%-25s|%20s%-20s|%6s%-6s|%10s%-9s|%5s%-5s§\n", "ID", "Tit", "le ", "Aut", "hor", "Pub. ", "date", "IS", "BN ", "Sta", "tus");
+                System.out.println("§¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯§");
+                for (Book book : books) {
+                    if(book.getIsAvailable()) {
+                        book.printBook(ID);
+                        ID++;
+                        System.out.println();
+                    }
+                }System.out.println("`-------------------------------------------------------------------------------------------------------------------------------------------'");
+
             }
         });
         //SAVE BOOKFILTER MENUS//

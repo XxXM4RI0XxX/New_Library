@@ -1,17 +1,23 @@
 package Library_II.Controllers.Filters;
 
 import Library_II.ConsoleReader;
+import Library_II.Controllers.Menus.Controller;
+import Library_II.Controllers.Menus.Menus;
 import Library_II.Entities.Book;
 import Library_II.Repositories.BookRepository;
+
+import java.util.HashMap;
 
 import static Library_II.Repositories.BookRepository.books;
 
 public class BookFilter {
 
+    private static final HashMap<String,HashMap<String,Controller>> menus = Menus.getMenus();
+
     public static void seeBooks(){
-        System.out.println("\nWant to filter books?");
-        System.out.println("1) Show borrowed books\n2) Show available books\n0) Don't filter, show all");
-        int opt = ConsoleReader.q.nextInt();
+        HashMap<String,Controller> menu = menus.get("bookfilter");
+        Controller print = menu.get("menu");
+        int opt = ConsoleReader.readInt();
 
         switch (opt){
             case 0:
