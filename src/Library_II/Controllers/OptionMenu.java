@@ -80,7 +80,7 @@ public class OptionMenu {
             switch (opt) {
                 case 1:
                     if (administrator.getAdminLevel()>=1) {
-                        ClientRepositoryOptions.printClients();
+                        UserRepository.printClients();
                         System.out.println();
                     } else System.out.println(">>> Access deny... haha");
                     break;
@@ -93,8 +93,8 @@ public class OptionMenu {
                     if (administrator.getAdminLevel()>=2) {
                         System.out.println("Choose the client you want to modify...");
                         ClientRepositoryOptions.selectClient();
-                        int cliID = ConsoleReader.q.nextInt();
-                        if (cliID > 0 && cliID <= ClientRepositoryOptions.clients.size()) {
+                        int cliID = ConsoleReader.readInt();
+                        if (cliID > 0 && cliID <= UserRepository.users.size()) {
                             EntitiesModifier.modifyClients(cliID);
                         } else {
                             System.out.println("Invalid input...");
@@ -104,10 +104,10 @@ public class OptionMenu {
                 case 4:
                     if (administrator.getAdminLevel()==3) {
                         System.out.println("Choose the client you want to delete...");
-                        ClientRepositoryOptions.printClients();
+                        UserRepository.printClients();
                         System.out.println("0) Cancel");
                         int CliID = ConsoleReader.q.nextInt();
-                        if (CliID > 0 && CliID <= ClientRepositoryOptions.clients.size()) {
+                        if (CliID > 0 && CliID <= UserRepository.users.size()) {
                             ClientRepositoryOptions.deleteClients(CliID - 1);
                         } else {
                             System.out.println("Invalid input...");
@@ -181,54 +181,52 @@ public class OptionMenu {
 
     }
     ////////////////////////////ADMINS/////////////////////////////
-    public static void superAdminMenu() {
-
-        boolean flag=true;
-
-        do {
-            System.out.println("\n\t<<<Admin administration>>>");
-            System.out.println("1) See admins\n2) Add new admin\n3) Modify admin\n4) Delete admin\n0) Exit");
-            int opt=ConsoleReader.q.nextInt();ConsoleReader.q.nextLine();
-
-            switch (opt) {
-                case 1:
-                    AdminRepositoryOptions.printAdmins();
-                    System.out.println();
-                    break;
-                case 2:
-                    EntitiesConstructors.adminConstructor();
-                    break;
-                case 3:
-                    System.out.println("Choose the admin you want to modify...");
-                    AdminRepositoryOptions.selectAdmin();
-                    int adminID=ConsoleReader.q.nextInt();
-                    if(adminID>0 && adminID<= AdminRepositoryOptions.admins.size()){
-                        EntitiesModifier.modifyAdmins(adminID);}
-                    else {
-                        System.out.println("Invalid input...");
-                    }
-                    break;
-                case 4:
-                    System.out.println("Choose the admin you want to delete...");
-                    AdminRepositoryOptions.printAdmins();
-                    System.out.println("0) Cancel");
-                    int AdminID=ConsoleReader.q.nextInt();
-                    if(AdminID>0 && AdminID<= AdminRepositoryOptions.admins.size()){
-                        AdminRepositoryOptions.deleteAdmins(AdminID-1);}
-                    else {
-                        System.out.println("Invalid input...");
-                    }
-                    break;
-                case 0:
-                    flag=false;
-                    System.out.println("Pleased to serve you, my lord...");
-                    break;
-                default:
-                    System.out.println("Invalid option...");
-            }
-        }while (flag);
-
-
-
-    }
+//    public static void superAdminMenu() {
+//
+//        boolean flag=true;
+//
+//        do {
+//            System.out.println("\n\t<<<Admin administration>>>");
+//            System.out.println("1) See admins\n2) Add new admin\n3) Modify admin\n4) Delete admin\n0) Exit");
+//            int opt=ConsoleReader.q.nextInt();ConsoleReader.q.nextLine();
+//
+//            switch (opt) {
+//                case 1:
+//                    UserRepository.printAdmins();
+//                    System.out.println();
+//                    break;
+//                case 2:
+//                    EntitiesConstructors.adminConstructor();
+//                    break;
+//                case 3:
+//                    System.out.println("Choose the admin you want to modify...");
+//                    AdminRepositoryOptions.selectAdmin();
+//                    int adminID=ConsoleReader.q.nextInt();
+//                    if(adminID>0 && adminID<= UserRepository.users.size()){
+//                        EntitiesModifier.modifyAdmins(adminID);}
+//                    else {
+//                        System.out.println("Invalid input...");
+//                    }
+//                    break;
+//                case 4:
+//                    System.out.println("Choose the admin you want to delete...");
+//                    AdminRepositoryOptions.printAdmins();
+//                    System.out.println("0) Cancel");
+//                    int AdminID=ConsoleReader.q.nextInt();
+//                    if(AdminID>0 && AdminID<= UserRepository.users.size()){
+//                        AdminRepositoryOptions.deleteAdmins(AdminID-1);}
+//                    else {
+//                        System.out.println("Invalid input...");
+//                    }
+//                    break;
+//                case 0:
+//                    flag=false;
+//                    System.out.println("Pleased to serve you, my lord...");
+//                    break;
+//                default:
+//                    System.out.println("Invalid option...");
+//            }
+//        }while (flag);
+//
+//    }
 }

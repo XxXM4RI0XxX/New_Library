@@ -1,9 +1,12 @@
 package Library_II;
 
+import Library_II.Controllers.Filters.IntegerValidator;
+import Library_II.Controllers.Filters.StringValidator;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class ConsoleReader{
+public class ConsoleReader implements IntegerValidator, StringValidator {
 
     public static Scanner q = new Scanner(System.in);
 
@@ -14,7 +17,6 @@ public class ConsoleReader{
         do {
             try {
                 number = q.nextByte();
-                q.nextLine();
                 return number;
             } catch (InputMismatchException e) {
                 System.out.println(">>> Enter a valid number...");
@@ -42,6 +44,11 @@ public class ConsoleReader{
         }while(flag);
 
         return number;
+    }
+
+    @Override
+    public boolean integerValidator() {
+        return false;
     }
 
     public static long readLong(){
@@ -104,7 +111,10 @@ public class ConsoleReader{
             String value = q.nextLine();
             if(value.length()>2){
                 System.out.println(">>> Enter a valid character...");
-            }else {
+            } else if (value.isEmpty()) {
+                value = q.nextLine();
+                return  value.charAt(0);
+            } else {
                 return value.charAt(0);
             }
         }while (flag);
@@ -129,5 +139,10 @@ public class ConsoleReader{
         }
 
         return line;
+    }
+
+    @Override
+    public boolean stringValidator() {
+        return false;
     }
 }

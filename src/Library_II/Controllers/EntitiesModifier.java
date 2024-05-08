@@ -89,11 +89,12 @@ public class EntitiesModifier {
     }
 
     public static void modifyClients(int cliID){
-        Client modCli = ClientRepositoryOptions.getClient(cliID-1);ConsoleReader.q.nextLine();
+        User modUser = UserRepository.getUser(cliID-1);
+        Client modCli = (Client) modUser;
 
         System.out.printf(">>> Client %s \n",modCli.getProfile().getName());
         System.out.println("a) Change client data\nb) Change username\nc) Change password\nx) Cancel");
-        char opt = ConsoleReader.q.next().charAt(0);
+        char opt = ConsoleReader.readChar();
 
         switch (opt){
             case 'a' -> {
@@ -141,7 +142,8 @@ public class EntitiesModifier {
     }
 
     public static void modifyAdmins(int adminID) {
-        Administrator modAdmin = AdminRepositoryOptions.getAdmin(adminID - 1);
+        User modUser = UserRepository.users.get(adminID - 1);
+        Administrator modAdmin = (Administrator) modUser;
         System.out.printf("Admin chosen: %s %s\n",modAdmin.getProfile().getName(),modAdmin.getProfile().getLastName());
         System.out.println("1) Admin info\n2) Admin permissions");
         byte opt = ConsoleReader.q.nextByte();ConsoleReader.q.nextLine();

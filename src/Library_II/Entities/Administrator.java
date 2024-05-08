@@ -3,11 +3,12 @@ package Library_II.Entities;
 import Library_II.Repositories.Permissions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Administrator extends User{
 
-    private ArrayList<Permissions> permissions = new ArrayList<>();
-    private static byte adminLevel;
+    private List<Permissions> permissions = new ArrayList<>();
+    protected static int adminLevel;
     final private boolean isSuperAdmin;
 
     public Administrator(Profile profile, String username, String password, boolean isSuperAdmin) {
@@ -20,11 +21,11 @@ public class Administrator extends User{
         return isSuperAdmin;
     }
 
-    public byte getAdminLevel() {
+    public int getAdminLevel() {
         return adminLevel;
     }
 
-    public ArrayList<Permissions> getPermissions() {
+    public List<Permissions> getPermissions() {
         return permissions;
     }
 

@@ -1,8 +1,6 @@
 package Library_II;
 
-import Library_II.Controllers.Filters.BookFilter;
-import Library_II.Controllers.Filters.TransactionClientFilter;
-import Library_II.Controllers.Menus.Controller;
+import Library_II.Controllers.EntitiesModifier;
 import Library_II.Controllers.Menus.Menus;
 import Library_II.Entities.*;
 import Library_II.Repositories.*;
@@ -12,7 +10,6 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 
 public class Seeder { //Crea objetos para las clases
 
@@ -20,7 +17,7 @@ public class Seeder { //Crea objetos para las clases
     
     public static void initialize(){
 
-        autoMenus();
+        Menus.setMenus();
         autoAdmins();
         autoAuthor();
         Client client1 = autoClient1();
@@ -68,6 +65,8 @@ public class Seeder { //Crea objetos para las clases
         UserRepository.addUser(Admin2);
         UserRepository.addUser(Admin3);
         UserRepository.addUser(Admin4);
+
+
     }
     ///////////////////////////CLIENT 1//////////////////////////////
     public static Client autoClient1(){
@@ -185,34 +184,6 @@ public class Seeder { //Crea objetos para las clases
         Book modBook2 = saveBook.get(8);
         modBook2.modifyIsAvailable(false);
         client2.borrowBook(modBook2);
-    }
-
-    public static void autoMenus(){
-        //MAIN MENU
-        HashMap<String,HashMap<String,Controller>> menus = Menus.getMenus();
-        ////////////////////// CLIENT MENU ///////////////////////////
-        HashMap<String, Controller> clientMenu = new HashMap<>();
-        clientMenu.put("printMenu", () -> {
-            System.out.println("\n\t  <<<CLIENT MENU>>>");
-            System.out.println("-------------------------------");
-            System.out.println("1) See Books\n2) See my transactions\n0) Logout");
-        });
-        clientMenu.put("1", new Controller() {
-            @Override
-            public void execute() {
-                Menus subMenu = new Menus();
-
-                HashMap<String, Controller> menuItem = new HashMap<>();
-                menuItem.put("2", BookFilter::seeBooks);
-                menuItem.put("1", () -> System.out.println("methods xd"));
-
-            }
-        });
-
-        menus.put("Clients", clientMenu);
-
-        //RETURN MAIN MENU
-        Menus.writeMenus(menus);
     }
 
 }

@@ -20,6 +20,7 @@ public class Login {
                 System.out.println("<Left username blank to exit library system>");
                 System.out.print("Username: ");
                 username = ConsoleReader.readString(0);
+                username = username.trim();
 
                 for(User getUser : UserRepository.getUsers()){
                     if(getUser.getUsername().equals(username)) {
@@ -40,13 +41,12 @@ public class Login {
                         System.out.println("<Left password blank to cancel>");
                         System.out.print("Password: ");
                         String inputPassword = ConsoleReader.readString(0);
+                        inputPassword = inputPassword.trim();
                         //Check password is the same
                         boolean checkPassword = User.checkPassword(inputPassword,user.getPassword());
                         if (checkPassword) {
                             flag = false;
-                            if(user instanceof Client)
-                               MainController.newMainClientMenu(user);
-                            else MainController.mainAdminMenu(user);
+                            MainController.mainMenu(user);
                         } else if (inputPassword.isEmpty()){
                             System.out.println(">>> Login canceled");
                             flag=false;

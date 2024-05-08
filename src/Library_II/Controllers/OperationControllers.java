@@ -41,9 +41,9 @@ public class OperationControllers {
             case 2:
                 System.out.println("Choose the client you want to filter for the search...");
                 ClientRepositoryOptions.selectClient();
-                int client = ConsoleReader.q.nextInt();
+                int client = ConsoleReader.readInt();
                 if(client>0){
-                Client pClient = ClientRepositoryOptions.getClient(client-1);
+                User pClient = UserRepository.getUser(client-1);
 
                 String name = pClient.getProfile().getName();
                 TransactionFilter.printClientTransactions(name);}

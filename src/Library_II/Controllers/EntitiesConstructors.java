@@ -8,7 +8,7 @@ import Library_II.Repositories.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class EntitiesConstructors implements Controller {
+public class EntitiesConstructors{
 
     //////////////////////AUTHORS/////////////////////////////
     public static void authorConstructor() {
@@ -106,7 +106,7 @@ public class EntitiesConstructors implements Controller {
         Profile profile = new Profile(name.trim(), lastname.trim(), new Date(year, month, day));
         Client client = new Client(profile,username,password);
         //Add new client to Data_Repository
-        ClientRepositoryOptions.addClient(client);
+        UserRepository.addUser(client);
         System.out.println("\n>>> Client successfully added :D");
         }
     }
@@ -150,7 +150,7 @@ public class EntitiesConstructors implements Controller {
             }
             admin.setAdminLevel();
             //Add new admin to Data_Repository
-            AdminRepositoryOptions.addAdministrator(admin);
+            UserRepository.addUser(admin);
             UserNameRepository.addUserName(username);
             System.out.println(">>> Administrator successfully added :D");
         }
@@ -174,8 +174,9 @@ public class EntitiesConstructors implements Controller {
         int selClient = ConsoleReader.q.nextInt(),selBook;
 
         //If wanted to cancel
-        if (selClient > 0 && selClient <= ClientRepositoryOptions.clients.size()) {
-            Client client = ClientRepositoryOptions.getClient(selClient - 1);
+        if (selClient > 0 && selClient <= UserRepository.users.size()) {
+            User user = UserRepository.getUser(selClient - 1);
+            Client client = (Client) user;
 
                 switch (transType) {
                     case 1:
@@ -237,10 +238,4 @@ public class EntitiesConstructors implements Controller {
             System.out.println("Invalid client...");
         }
     }
-
-    @Override
-    public void execute() {
-        transactionConstructor(0);
-    }
-
 }
