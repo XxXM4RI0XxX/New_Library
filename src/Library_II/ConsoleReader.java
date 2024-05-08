@@ -17,7 +17,7 @@ public class ConsoleReader{
                 q.nextLine();
                 return number;
             } catch (InputMismatchException e) {
-                System.out.println("Please enter a valid number...");
+                System.out.println(">>> Enter a valid number...");
                 q.nextLine();
             }
         }while(flag);
@@ -36,7 +36,7 @@ public class ConsoleReader{
                 number = (int) x;
                 return number;
             } catch (InputMismatchException e) {
-                System.out.println("Please enter a valid number...");
+                System.out.println(">>> Enter a valid number...");
                 q.nextLine();
             }
         }while(flag);
@@ -54,7 +54,7 @@ public class ConsoleReader{
                 number = (long) x;
                 return number;
             } catch (InputMismatchException e) {
-                System.out.println("Please enter a valid number...");
+                System.out.println(">>> Enter a valid number...");
                 q.nextLine();
             }
         }while(flag);
@@ -71,7 +71,7 @@ public class ConsoleReader{
                 number = q.nextFloat();
                 return number;
             } catch (InputMismatchException e){
-                System.out.println("Please enter a valid number...");
+                System.out.println(">>> Enter a valid number...");
                 q.nextLine();
             }
         }while (flag);
@@ -88,7 +88,7 @@ public class ConsoleReader{
                 number = q.nextDouble();
                 return number;
             } catch (InputMismatchException e){
-                System.out.println("Please enter a valid number...");
+                System.out.println(">>> Enter a valid number...");
                 q.nextLine();
             }
         }while (flag);
@@ -102,8 +102,8 @@ public class ConsoleReader{
 
         do {
             String value = q.nextLine();
-            if(value.length()>1){
-                System.out.println("Enter a valid character...");
+            if(value.length()>2){
+                System.out.println(">>> Enter a valid character...");
             }else {
                 return value.charAt(0);
             }

@@ -1,22 +1,44 @@
 package Library_II.Controllers;
 
 import Library_II.ConsoleReader;
-import Library_II.Controllers.Filters.BookFilter;
-import Library_II.Controllers.Filters.TransactionClientFilter;
-import Library_II.Controllers.Menus.AdminMenu;
-import Library_II.Controllers.Menus.Menu;
+import Library_II.Controllers.Filters.*;
+import Library_II.Controllers.Menus.*;
 import Library_II.Entities.*;
-import Library_II.Repositories.UserRepository;
+
+import java.util.HashMap;
 
 
 public class MainController {
 
-    public static void mainClientMenu(User users){ //Temporal Client obj
+    private static final HashMap<String,HashMap<String,Controller>> menus = Menus.getMenus();
+
+    public static void newMainClientMenu(User loginUser){
+        HashMap<String,Controller> clientMenus = menus.get("Clients");
+
+        Client user = (Client) loginUser;
+        System.out.println("\nWelcome " + user.getProfile().getName() +" "+user.getProfile().getLastName() +" :D");
+        Controller printMenu = clientMenus.get("printMenu");
+
+        boolean flag = true;
+
+        do{
+            printMenu.execute();
+            char c = ConsoleReader.readChar();
+            String opt = ""+c;
+
+            
+
+        }while (flag);
+
+    }
+
+    public static void mainClientMenu(User users){
         Client user = (Client) users;
         System.out.println("\nWelcome " + user.getProfile().getName() +" "+user.getProfile().getLastName() +" :D");
 
         boolean flag = true;
         do {
+
             System.out.println("\n\t  <<<CLIENT MENU>>>");
             System.out.println("-------------------------------");
             System.out.println("1) See Books\n2) See my transactions\n0) Logout");
@@ -71,8 +93,6 @@ public class MainController {
             System.out.println("-------------------------------------");
             System.out.println("x) Admin administrators (only Super Admin)");
             System.out.print("-> ");
-            Controller controller = Menu.getAdminMenu("a");
-            controller.execute();
 
             char opt = ConsoleReader.readChar();
             

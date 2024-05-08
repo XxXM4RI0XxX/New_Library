@@ -20,6 +20,10 @@ public class Administrator extends User{
         return isSuperAdmin;
     }
 
+    public byte getAdminLevel() {
+        return adminLevel;
+    }
+
     public ArrayList<Permissions> getPermissions() {
         return permissions;
     }
@@ -47,14 +51,5 @@ public class Administrator extends User{
             adminLevel=1;
         else adminLevel=0;
     }
-
-    @Override
-    public void print() {
-        System.out.print("avr'nt");
-    }
-
-    @Override
-    public byte getAdminLevel() {
-        return adminLevel;
-    }
 }
+

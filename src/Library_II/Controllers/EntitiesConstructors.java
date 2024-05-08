@@ -1,6 +1,7 @@
 package Library_II.Controllers;
 
 import Library_II.ConsoleReader;
+import Library_II.Controllers.Menus.Controller;
 import Library_II.Entities.*;
 import Library_II.Repositories.*;
 
@@ -103,7 +104,7 @@ public class EntitiesConstructors implements Controller {
         String password = User.verifyPasswordFormat("");//Verificar que la contraseña tenga formato requerido
         //Creating client profile
         Profile profile = new Profile(name.trim(), lastname.trim(), new Date(year, month, day));
-        Client client = new Client(profile,username,password, 0);
+        Client client = new Client(profile,username,password);
         //Add new client to Data_Repository
         ClientRepositoryOptions.addClient(client);
         System.out.println("\n>>> Client successfully added :D");

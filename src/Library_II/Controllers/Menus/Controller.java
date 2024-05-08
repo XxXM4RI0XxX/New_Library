@@ -1,4 +1,4 @@
-package Library_II.Controllers;
+package Library_II.Controllers.Menus;
 
 public interface Controller {
 

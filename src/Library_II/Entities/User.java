@@ -18,10 +18,6 @@ public abstract class User {
         this.password=password;
     }
 
-    public abstract void print();
-
-    public abstract byte getAdminLevel();
-
     public void printProfile(int ID){
         String pattern = "dd/MM/yyyy";
         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
